@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment - Hospital Booking</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 450px;
+      color: #fff;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    fieldset {
+      border: none;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #fff;
+    }
+
+    input[type="text"],
+    input[type="month"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.2);
+      color: #000;
+    }
+
+    .payment-section {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .payment-section.active {
+      display: block;
+    }
+
+    img {
+      display: block;
+      margin: 10px auto;
+    }
+
+    .form-buttons {
+      text-align: center;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+      }
+
+      input, button {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+   <div class="container">
+    <h2>Make Payment</h2>
+
+    <div id="bookingSummary"></div>
+
+    <form id="paymentForm">
+      <fieldset>
+        <legend>Select Payment</legend>
+        <label><input type="radio" name="method" value="upi" required> UPI</label>
+        <label><input type="radio" name="method" value="card"> Card</label>
+        <label><input type="radio" name="method" value="qr"> QR</label>
+      </fieldset>
+
+      <div id="upiSection" class="payment-section hidden">
+        <label>UPI ID<input type="text" id="upiID" value="ashu@upi" /></label>
+      </div>
+
+      <div id="cardSection" class="payment-section hidden">
+        <p>Enter card details in Razorpay popup (test mode).</p>
+      </div>
+
+      <div id="qrSection" class="payment-section hidden">
+        <img src="assets/images/qr-code.png" alt="QR Code" width="180" />
+        <p>Scan and pay using any UPI app.</p>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="backBtn">Back</button>
+        <button type="submit" id="payBtn">Pay & Book</button>
+      </div>
+    </form>
+
+    <p id="payMessage"></p>
+  </div>
+
+  <!-- Firebase compat SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+  <!-- your app firebase config -->
+  <script src="firebase.js"></script>
+
+  <!-- Razorpay library -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <script src="js/payment.js"></script>
+</body>
+</html>

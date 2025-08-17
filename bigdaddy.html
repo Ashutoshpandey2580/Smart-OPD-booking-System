@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BHU Hospital - OPD Booking</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Queue Status Styling */
+    .token-status {
+      text-align: center;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 30px auto;
+      width: 80%;
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    }
+    .token-status h2 {
+      color: #2c3e50;
+    }
+    .token-status p {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+    .token-status span {
+      font-weight: bold;
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔍 Search Bar + Header -->
+  <header class="main-header">
+    <div class="container">
+      <div class="logo">
+        <img src="logo.png" alt="BHU Logo" />
+        <span>SSL Hospital,IMS,BHU</span>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search services, doctors..." />
+        <button>Search</button>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="captcha.html" class="btn-primary">Book Appointment</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 📢 Notice Banner -->
+  <section class="notice">
+    <marquee behavior="scroll" direction="left">🚨 OPD will remain closed on 15th August (Independence Day). Free Health Camp on 10th August!</marquee>
+  </section>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Welcome to BHU Hospital</h1>
+        <p>Advanced OPD Booking with Smart Appointment Flow</p>
+        <a href="captcha.html" class="cta-btn">->]Register/Login</a>
+      </div>
+      <div class="hero-image">
+        <img src="mahamana.png" alt="Mahamana Image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <h2>About Us</h2>
+    <p>BHU Hospital is one of India's most prestigious healthcare centers. With modern infrastructure and experienced doctors, we serve thousands of patients daily through a transparent, paperless OPD booking system.</p>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="image copy.png" alt="OPD Booking" />
+        <h3>Online OPD Booking</h3>
+        <p>Seamless booking system with patient-first approach.</p>
+      </div>
+      <div class="service-card">
+        <img src="image copy 2.png" alt="Specialist Doctors" />
+        <h3>Specialist Doctors</h3>
+        <p>Choose from a wide range of departments and experts.</p>
+      </div>
+      <div class="service-card">
+        <img src="image copy 3.png" alt="Digital Appointments" />
+        <h3>Digital Appointments</h3>
+        <p>Eco-friendly, paperless digital slips with real-time token display.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔴 Live Queue Status -->
+  <div class="token-status">
+    <h2>Live OPD Queue Status</h2>
+    <p>Current Token: <span id="currentToken">Loading...</span></p>
+    <p>Next Token: <span id="nextToken">Loading...</span></p>
+  </div>
+
+  <!-- 📅 Appointment Status Check -->
+  <section class="status-check container">
+    <h2>Check Appointment Status</h2>
+    <form>
+      <input type="text" placeholder="Enter Booking ID or Mobile No." required />
+      <button type="submit">Check Status</button>
+    </form>
+  </section>
+
+  <!-- 👨‍⚕️ Departments & Doctors -->
+  <section class="departments container">
+    <h2>Departments & Doctors</h2>
+    <div class="departments-grid">
+      <div class="dept-card">
+        <h3>Cardiology</h3>
+        <p>Dr. A. Verma</p>
+      </div>
+      <div class="dept-card">
+        <h3>Neurology</h3>
+        <p>Dr. B. Singh</p>
+      </div>
+      <div class="dept-card">
+        <h3>Orthopedics</h3>
+        <p>Dr. C. Sharma</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🧾 Download OPD Slip -->
+  <section class="download-slip container">
+    <a href="slip.pdf" class="cta-btn download-btn">Download OPD Slip</a>
+  </section>
+
+  <!-- 📍 Google Map -->
+  <section class="map-section">
+    <h2>Locate Us</h2>
+    <iframe src="https://www.google.com/maps/embed?...your_link_here..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <p>© 2025 BHU Hospital | Designed by Ashutosh Pandey | Email: support@bhuhospital.com</p>
+    </div>
+  </footer>
+
+  <script src=""></script>
+<script type="module" src="firebase.js"></script>
+
+  </script>
+
+</body>
+</html>

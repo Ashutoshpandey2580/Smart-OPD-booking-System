@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Check Availability</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #6dd5ed, #2193b0);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .availability-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 30px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+      width: 100%;
+      max-width: 420px;
+      color: #fff;
+    }
+
+    .availability-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    label {
+      font-size: 15px;
+      margin-bottom: 6px;
+      display: block;
+      color: #ffffff;
+    }
+
+    select, input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    select option {
+      color: #000;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #66a6ff, #89f7fe);
+      transform: scale(1.03);
+    }
+
+    .refresh-btn {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #eee;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 500px) {
+      .availability-box {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="availability-box">
+    <h2>Check Availability</h2>
+
+    <label for="category">Category *</label>
+    <select id="category" name="category" onchange="updateDepartments()" required>
+      <option value="" selected disabled>--- Select Category ---</option>
+      <option value="modern">Modern Medicine</option>
+      <option value="ayurvedic">Ayurvedic OPD Booking</option>
+    </select>
+
+    <label for="department">Department *</label>
+    <select id="department" name="department" required>
+      <option value="" selected disabled>--- Select Department ---</option>
+    </select>
+
+    <label for="date">Select Date *</label>
+    <input type="date" id="date" name="date" required />
+
+    <button class="btn" onclick="checkAvailability()">NEXT</button>
+  </div>
+
+<script>
+function updateDepartments() {
+    const category = document.getElementById("category").value;
+    const departmentSelect = document.getElementById("department");
+
+    departmentSelect.innerHTML = '<option value="" selected disabled>--- Select Department ---</option>';
+
+    let departments = [];
+
+    if (category === "modern") {
+        departments = [
+            "General Medicine", "General Surgery", "Cardiology", "Orthopedics", 
+            "Neurology", "Nephrology", "Urology", "Pediatrics", 
+            "Gynecology & Obstetrics", "Dermatology", "ENT", "Ophthalmology", 
+            "Psychiatry", "Dentistry", "Pulmonology", "Gastroenterology", 
+            "Endocrinology", "Hematology", "Oncology", "Rheumatology"
+        ];
+    } 
+    else if (category === "ayurvedic") {
+        departments = [
+            "Kayachikitsa (Internal Medicine)", "Shalya Tantra (Surgery)", 
+            "Shalakya Tantra (Eye & ENT)", "Prasuti & Stri Roga (Gynecology)", 
+            "Kaumarbhritya (Pediatrics)", "Rasayana (Rejuvenation Therapy)", 
+            "Panchakarma", "Agad Tantra (Toxicology)", 
+            "Swathavritta (Preventive Medicine)", "Bala Roga (Child Care)"
+        ];
+    }
+
+    departments.forEach(dept => {
+        const option = document.createElement("option");
+        option.value = dept.toLowerCase().replace(/\s+/g, "-");
+        option.textContent = dept;
+        departmentSelect.appendChild(option);
+    });
+}
+
+function checkAvailability() {
+    const category = document.getElementById("category").value;
+    const dept = document.getElementById("department").value;
+    const date = document.getElementById("date").value;
+
+    if (!category || !dept || !date) {
+      alert("⚠️ Please select category, department and date.");
+      return;
+    }
+
+    // Save selections for next page
+    localStorage.setItem("selectedCategory", category);
+    localStorage.setItem("selectedDepartment", dept);
+    localStorage.setItem("selectedDate", date);
+
+    // Redirect to slots page
+    window.location.href = "slots.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Header */
+.main-header {
+  background: #003366;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.main-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.logo span {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffd700;
+}
+
+.btn-primary {
+  background: #ff8c00;
+  padding: 8px 15px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(90deg, #ffffff 60%, #e6f2ff 40%);
+  padding: 60px 0;
+}
+
+.hero-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cta-btn {
+  background: #003366;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* About Section */
+.about {
+  padding: 60px 20px;
+  background: #fff;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Services */
+.services {
+  background: #f1f1f1;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.service-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 280px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.3s ease-in-out;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card img {
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+  background: #003366;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text, .hero-image {
+    max-width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .services-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/* 🔍 Search Bar */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.search-bar input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.search-bar button {
+  padding: 8px 12px;
+  background-color: #006699;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 📢 Notice Banner */
+.notice {
+  background-color: #ffefc4;
+  padding: 8px;
+  font-weight: bold;
+  color: #a94442;
+  border-bottom: 1px solid #e0c080;
+}
+
+/* 📅 Appointment Status */
+.status-check {
+  margin: 40px auto;
+  text-align: center;
+}
+.status-check input {
+  padding: 10px;
+  width: 250px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.status-check button {
+  padding: 10px 20px;
+  background-color: #006699;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 👨‍⚕️ Departments Grid */
+.departments-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+.dept-card {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  width: 200px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* 🧾 Download Button */
+.download-slip {
+  text-align: center;
+  margin: 40px 0;
+}
+.download-btn {
+  padding: 12px 24px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* 📍 Map Section */
+.map-section {
+  padding: 30px 0;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+.token-status {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+}
+.token-status h2 {
+    color: #2d89ef;
+}

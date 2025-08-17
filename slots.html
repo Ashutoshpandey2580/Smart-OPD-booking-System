@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Doctor Slot</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #e0eafc, #cfdef3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (max-width: 500px) {
+      .form-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🕒 Select a Doctor Slot</h2>
+    
+    <form id="slotForm">
+      <label for="department">Department:</label>
+      <select id="department" required>
+        <option value="">-- Choose Department --</option>
+        <option value="general">General Medicine</option>
+        <option value="pediatrics">Pediatrics</option>
+        <option value="orthopedics">Orthopedics</option>
+        <option value="dermatology">Dermatology</option>
+         <option value="Urology">Urology</option>
+        <option value="Neurology">Neurology</option>
+        <option value="Rheumatology">Rheumatology</option>
+        <option value="Nephrology">Nephrology</option>
+      </select>
+
+      <label for="slot">Available Slots:</label>
+      <select id="slot" required>
+        <option value="">-- Select Time Slot --</option>
+        <option>9:00 AM - 9:30 AM</option>
+        <option>10:00 AM - 10:30 AM</option>
+        <option>11:00 AM - 11:30 AM</option>
+        <option>12:00 PM - 12:30 PM</option>
+      </select>
+
+      <div class="form-buttons">
+        <button type="button" onclick="goBack()">⬅ Back</button>
+        <button type="submit">Next ➡</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("slotForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const department = document.getElementById("department").value;
+      const slot = document.getElementById("slot").value;
+
+      if (!department || !slot) {
+        alert("Please select department and time slot.");
+        return;
+      }
+
+      localStorage.setItem("slotDetails", JSON.stringify({ department, slot }));
+      window.location.href = "patient-form.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Booking Confirmation</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #388e3c;
+    }
+
+    .success {
+      font-size: 20px;
+      color: green;
+    }
+
+    .method, .token {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .token {
+      font-size: 28px;
+      background-color: #f0f9ff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    #qrcode {
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #1976d2;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #125ea9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2> Booking Confirmed</h2>
+    <p class="success">Your hospital appointment has been successfully booked.</p>
+    <p>We’ll send a confirmation message to your phone/email shortly.</p>
+
+    <p class="method" id="paymentMessage">Loading payment method...</p>
+
+    <p class="method">🎫 Your Token Number:</p>
+    <p class="token" id="tokenDisplay">Generating...</p>
+
+    <div id="qrcode"></div>
+
+    <button class="btn" onclick="downloadPDF()">📄 Download Ticket</button>
+    <a href="index.html" class="btn">🔙 Back to Home</a>
+  </div>
+
+  <script>
+    const method = localStorage.getItem("paymentMethod");
+    let msg = "Payment Method: ";
+    if (method === "upi") msg += "UPI Payment";
+    else if (method === "card") msg += "Credit/Debit Card";
+    else if (method === "qr") msg += "Offline via QR Code";
+    else msg = "Payment Method: Not Found";
+    document.getElementById("paymentMessage").textContent = msg;
+
+    // Generate token
+    const token = "TK-" + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById("tokenDisplay").textContent = token;
+    localStorage.setItem("userToken", token);
+
+    // Generate QR code
+    QRCode.toCanvas(document.getElementById('qrcode'), token, {
+      width: 150,
+      margin: 1,
+      color: {
+        dark: '#000000',
+        light: '#ffffff'
+      }
+    });
+
+    // Download PDF
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFontSize(16);
+      doc.text("Hospital Booking Confirmation", 20, 20);
+      doc.setFontSize(12);
+      doc.text("✅ Booking Successful", 20, 35);
+      doc.text("📅 Date: " + new Date().toLocaleDateString(), 20, 45);
+      doc.text("🕒 Time: " + new Date().toLocaleTimeString(), 20, 52);
+      doc.text("🎫 Token Number: " + token, 20, 62);
+      doc.text("💳 " + msg, 20, 72);
+
+      // QR Code as image in PDF
+      const qrCanvas = document.querySelector("canvas");
+      const qrDataUrl = qrCanvas.toDataURL("image/png");
+      doc.addImage(qrDataUrl, "PNG", 130, 30, 50, 50);
+
+      doc.save("Booking_Ticket.pdf");
+    }
+  </script>
+</body>
+</html>

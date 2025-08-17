@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Registration - Smart OPD</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #007bff, #00d4ff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(14px);
+      border-radius: 15px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    form fieldset {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    legend {
+      padding: 0 10px;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 3px #00d4ff;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+    }
+
+    span {
+      color: #ffcccb;
+    }
+
+    @media (max-width: 600px) {
+      .form-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📝 Patient Registration</h2>
+
+    <form id="patientForm">
+      <fieldset>
+        <legend>👤 Personal Details</legend>
+
+        <div class="form-group">
+          <label for="name">Full Name <span>*</span></label>
+          <input type="text" id="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age <span>*</span></label>
+          <input type="number" id="age" required min="0" />
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender <span>*</span></label>
+          <select id="gender" required>
+            <option value="">--Select--</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>📞 Contact Details</legend>
+
+        <div class="form-group">
+          <label for="mobile">Mobile Number <span>*</span></label>
+          <input type="tel" id="mobile" pattern="[0-9]{10}" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email (optional)</label>
+          <input type="email" id="email" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>🆔 Identification</legend>
+
+        <div class="form-group">
+          <label for="aadhaar">Aadhaar Card Number <span>*</span></label>
+          <input type="text" id="aadhaar" maxlength="12" pattern="\d{12}" required />
+        </div>
+      </fieldset>
+
+      <div class="form-buttons">
+        <button type="button" onclick="goBack()">⬅ Back</button>
+        <button type="submit">Next ➡</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = 'slots.html';
+    }
+
+    document.getElementById("patientForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+      const mobile = document.getElementById("mobile").value.trim();
+      const aadhaar = document.getElementById("aadhaar").value.trim();
+
+      if (!/^\d{12}$/.test(aadhaar)) {
+        alert("Please enter a valid 12-digit Aadhaar number.");
+        return;
+      }
+
+      localStorage.setItem("patientData", JSON.stringify({ name, age, gender, mobile, aadhaar }));
+      window.location.href = "payment.html";
+    });
+  </script>
+</body>
+</html>
