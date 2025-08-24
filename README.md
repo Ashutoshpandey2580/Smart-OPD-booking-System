@@ -18,22 +18,36 @@ Simple and Responsive UI (style.css)
 Firebase Integration (firebase.js) for backend operations (future scope) 
 .
 Project Structure:
-├── availability.html       # Page to check OPD availability
-├── bigdaddy.html           # Main entry page (prototype/homepage)
-├── captcha.html            # Captcha verification page
-├── firebase.js             # Firebase configuration file
-├── patient-form.html       # Patient details form
-├── payment.html            # Payment page
-├── slots.html              # Slot booking page
-├── style.css               # Styling file
-├── images/                 # Logo and related images
+├── availability.html           # Page to check OPD availability
+
+├── bigdaddy.html               # Main entry page (prototype/homepage)
+
+├── captcha.html                # Captcha verification page
+
+├── firebase.js                 # Firebase configuration file
+
+├── patient-form.html           # Patient details form
+
+├── payment.html                # Payment page
+
+├── slots.html                  # Slot booking page
+
+├── style.css                   # Styling file
+
+├── images/                    # Logo and related images
 │   ├── logo.png
+
 │   ├── mahamana.png
+
 │   ├── image.png
+
 │   ├── image copy.png
+
 │   ├── image copy 2.png
+
 │   └── image copy 3.png
-└── .vscode/                # VS Code project settings  
+
+└── .vscode/                      # VS Code project settings  
 
 🛠️ Tech Stack
 1.HTML5
